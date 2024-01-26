@@ -1,0 +1,61 @@
+//https://curl.trillworks.com/
+
+var convert = function() {
+            var curlCode = document.getElementById("curl-code").value;
+            var generatedCode;
+            if (curlCode.indexOf("curl") === -1) {
+                generatedCode = "Could not parse curl command."
+            } else {
+                try {
+                    var language = getLanguage();
+                    if (language === "node") {
+                        generatedCode = curlconverter.toNode(curlCode);
+                        window["ga"]("send", "event", "convertcode", "tonode")
+                    } else if (language === "php") {
+                        generatedCode = curlconverter.toPhp(curlCode);
+                        window["ga"]("send", "event", "convertcode", "tophp")
+                    } else if (language === "r") {
+                        generatedCode = curlconverter.toR(curlCode);
+                        window["ga"]("send", "event", "convertcode", "tor")
+                    } else if (language === "go") {
+                        generatedCode = curlconverter.toGo(curlCode);
+                        window["ga"]("send", "event", "convertcode", "togo")
+                    } else if (language === "strest") {
+                        generatedCode = curlconverter.toStrest(curlCode);
+                        window["ga"]("send", "event", "convertcode", "tostrest")
+                    } else if (language === "rust") {
+                        generatedCode = curlconverter.toRust(curlCode);
+                        window["ga"]("send", "event", "convertcode", "torust")
+                    } else if (language === "elixir") {
+                        generatedCode = curlconverter.toElixir(curlCode);
+                        window["ga"]("send", "event", "convertcode", "toelixir")
+                    } else if (language === "dart") {
+                        generatedCode = curlconverter.toDart(curlCode);
+                        window["ga"]("send", "event", "convertcode", "todart")
+                    } else if (language === "json") {
+                        generatedCode = curlconverter.toJsonString(curlCode);
+                        window["ga"]("send", "event", "convertcode", "tojson")
+                    } else if (language === "ansible") {
+                        generatedCode = curlconverter.toAnsible(curlCode);
+                        window["ga"]("send", "event", "convertcode", "toansible")
+                    } else if (language === "matlab") {
+                        generatedCode = curlconverter.toMATLAB(curlCode);
+                        window["ga"]("send", "event", "convertcode", "tomatlab")
+                    } else {
+                        generatedCode = curlconverter.toPython(curlCode);
+                        window["ga"]("send", "event", "convertcode", "topython")
+                    }
+                    hideIssuePromo()
+                } catch (e) {
+                    console.log(e);
+                    if (curlCode.indexOf("curl") !== 0) {
+                        generatedCode = 'Error parsing curl command. Your input should start with the word "curl"'
+                    } else {
+                        generatedCode = "Error parsing curl command."
+                    }
+                    window["ga"]("send", "event", "convertcode", "parseerror");
+                    showIssuePromo()
+                }
+            }
+            document.getElementById("generated-code").value = generatedCode
+        };

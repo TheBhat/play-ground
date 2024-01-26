@@ -1,0 +1,26 @@
+https://github.com/ShivdasBachewar/IP_LOCATOR/blob/master/index.html
+<script>
+			  var xhttp = new XMLHttpRequest();
+  			  xhttp.onreadystatechange = function() {
+			    if (this.readyState == 4 && this.status == 200){
+			    	  ip_detail = JSON.parse(this.responseText);
+			   		  document.getElementById("ip_addr").innerHTML += ip_detail.ip;
+			   		  document.getElementById("city").innerHTML += ip_detail.city;
+			   		  document.getElementById("region").innerHTML += ip_detail.region;
+			   		  document.getElementById("country").innerHTML += ip_detail.country;
+			   		  document.getElementById("org").innerHTML += ip_detail.org;
+ 			   		  document.getElementById("postal").innerHTML += ip_detail.postal;
+			   		  
+			   		  			   		  
+			    }
+			  };
+			  xhttp.open("GET", "https://ipinfo.io/json", true);
+			  xhttp.send();
+  			
+  			
+				/*	json_obj = $.getJSON("https://ipinfo.io/json");alert(json_obj);
+  					json_obj = JSON.stringify(json_obj);
+  					alert(json_obj);
+  					json_obj = JSON.parse(josn_obj);alert(json_obj);
+					document.getElementById("ip_addr").innerHTML+=json_obj.city; */
+</script>
